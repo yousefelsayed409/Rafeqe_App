@@ -7,6 +7,7 @@ import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:intl/intl.dart';
 import 'package:quranapp/core/function/app_function.dart';
 import 'package:quranapp/core/utils/app_assets.dart';
 import 'package:quranapp/core/utils/app_color.dart';
@@ -18,6 +19,7 @@ import 'package:quranapp/featuers/home/presentation/view/hadith_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/hisn_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/prayer_time_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/qibla_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/sahih_%20al_bukhari_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/taqwem_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/tasbeh_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/zakat_view.dart';
@@ -30,19 +32,30 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   var element;
   Random rnd = Random();
+  late String _gregorianDate;
 
   final List<String> arabicMonths = [
-    'محرم', 'صفر', 'ربيع الأول', 'ربيع الآخر',
-    'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان',
-    'رمضان', 'شوّال', 'ذو القعدة', 'ذو الحجة'
+    'محرم',
+    'صفر',
+    'ربيع الأول',
+    'ربيع الآخر',
+    'جمادى الأولى',
+    'جمادى الآخرة',
+    'رجب',
+    'شعبان',
+    'رمضان',
+    'شوّال',
+    'ذو القعدة',
+    'ذو الحجة'
   ];
-
-
 
   @override
   void initState() {
+    final now = DateTime.now();
+
     element = zikr[rnd.nextInt(zikr.length)];
     super.initState();
+    _gregorianDate = DateFormat.yMMMMEEEEd('ar').format(now);
   }
 
   @override
@@ -71,7 +84,7 @@ class _HomeViewState extends State<HomeView> {
                   padding: EdgeInsets.all(8.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [ 
+                    children: [
                       Align(
                         alignment: Alignment.topRight,
                         child: Container(
@@ -87,8 +100,9 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                         ),
-                      ), 
+                      ),
                       SizedBox(height: 8.h),
+                      
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -101,14 +115,17 @@ class _HomeViewState extends State<HomeView> {
                           ),
                         ],
                       ),
-                      SvgPicture.asset(
-                        'assets/svg/hijri/${_today.hMonth}.svg',
-                        color: AppColors.white,
-                        height: 50.0.h,
-                      ),
+
+                      // SvgPicture.asset(
+                      //   'assets/svg/hijri/${_today.hMonth}.svg',
+                      //   color: AppColors.white,
+                      //   height: 50.0.h,
+                      // ),
                       SizedBox(height: 8.h),
                       Container(
-                        padding: EdgeInsets.only(top: 8.w, right: 8.w,
+                        padding: EdgeInsets.only(
+                          top: 8.w,
+                          right: 8.w,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.2),
@@ -137,6 +154,25 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
+                SizedBox(height: 8.h),
+                Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          padding: EdgeInsets.all(8.w),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child:Text(
+                      _gregorianDate,
+                      style: AppTextStyles.kufi16Style,
+                      textAlign: TextAlign.center,
+                    ),
+                        ),
+                      ),
+                
+                SizedBox(height: 8.h),
+
                 // SizedBox(height:MediaQuery.of),
                 Expanded(
                   child: Padding(
@@ -144,6 +180,15 @@ class _HomeViewState extends State<HomeView> {
                     child: Container(
                       padding: EdgeInsets.only(top: 10.r),
                       decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.greentow,
+                            offset: Offset(5, 5,),
+                            blurRadius: 10,
+                            blurStyle: BlurStyle.outer,
+                            
+                          )
+                        ],
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
@@ -173,16 +218,18 @@ class _HomeViewState extends State<HomeView> {
                             icon: FlutterIslamicIcons.quran,
                             label: 'الأحاديث',
                             onTap: () {
-                               NavigationHelper.navigateTo(
+                              NavigationHelper.navigateTo(
                                   context, const HadithView());
                             },
                           ),
                           MenuItem(
                             onTap: () { 
-                             AppFunctions.screenModalBottomSheet(
-                                context, const QiblahScreen(),
+                              
+                              AppFunctions.screenModalBottomSheet(
+                                context,
+                                const QiblahScreen(),
                                 color: const Color.fromARGB(255, 48, 48, 48),
-                             );
+                              );
                             },
                             icon: FlutterIslamicIcons.qibla,
                             label: 'القبلة',
@@ -212,19 +259,24 @@ class _HomeViewState extends State<HomeView> {
                             label: 'ذكاتك',
                           ),
                           MenuItem(
-                            onTap: () {},
-                            icon: FlutterIslamicIcons.iftar,
-                            label: 'صحيح البخارى',
-                          ),
-                           MenuItem(
                             onTap: () {
                               NavigationHelper.navigateTo(
-                                  context, HijriGregorianCalendarView());
+                                  context, const SahihalBukhariView());
                             },
-                            icon: Icons.settings,
+                            icon: FlutterIslamicIcons.quran,
+                            label: 'صحيح البخارى',
+                          ),
+                          MenuItem(
+                            onTap: () {
+                              AppFunctions.screenModalBottomSheet(
+                                context, TaqwemView(),
+                                // color: const Color.fromARGB(255, 48, 48, 48),
+                              );
+                            },
+                            icon: FlutterIslamicIcons.calendar,
                             label: 'التقويم الهجري',
                           ),
-                           MenuItem(
+                          MenuItem(
                             onTap: () {},
                             icon: Icons.settings,
                             label: 'الإعدادات',
@@ -242,3 +294,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
+
+
+

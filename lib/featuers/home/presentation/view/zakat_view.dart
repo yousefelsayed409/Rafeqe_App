@@ -38,7 +38,7 @@ class _ZakatCalculatorViewState extends State<ZakatCalculatorView> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.green,
+        backgroundColor: AppColors.greenOpacity,
         title: Text('دليل الزكاة', style: AppTextStyles.tajawalstyle22),
         centerTitle: true,
       ),

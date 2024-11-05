@@ -34,93 +34,99 @@ class _HadithItemState extends State<HadithItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppColors.coloBackHadith1,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(8.0),
-              topRight: Radius.circular(8.0),
-            ).r),
-        child: orientation(
-            context,
-            Stack(
-              children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0).r,
-                    child: greenContainer(
-                    colors: AppColors.coloBackHadith2,
-                      context,
-                      32.0.h,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: 250.w,
-                            alignment: Alignment.center,
-                            child: Text(
-                              hadithByCategory.hadithList.isNotEmpty
-                                  ? hadithByCategory.hadithList.first.nameHadith
-                                  : "لا توجد بيانات",
-                              style: AppTextStyles.vexatext18style,
+    return SafeArea(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+          backgroundColor: AppColors.coloBackHadith2,
+          body: Container(
+          decoration: BoxDecoration(
+              color: AppColors.coloBackHadith1,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(8.0),
+                topRight: Radius.circular(8.0),
+              ).r),
+          child: orientation(
+              context,
+              Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0).r,
+                      child: greenContainer(
+                      colors: AppColors.coloBackHadith2,
+                        context,
+                        32.0.h,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            customClose(context),
+                            Container(
+                              width: 250.w,
+                              alignment: Alignment.center,
+                              child: Text(
+                                hadithByCategory.hadithList.isNotEmpty
+                                    ? hadithByCategory.hadithList.first.nameHadith
+                                    : "لا توجد بيانات",
+                                style: AppTextStyles.vexatext18style,
+                              ),
                             ),
-                          ),
+                            fontSizeDropDown(context, setState, AppColors.black),
+                          ],
+                        ),
+                        width: MediaQuery.sizeOf(context).width,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: orientation(
+                        context,
+                        const EdgeInsets.only(top: 60).r,
+                        const EdgeInsets.only(top: 55).r),
+                    child: Align(
+                        alignment: Alignment.topCenter,
+                        child: azkarBuild(context)),
+                  ),
+                ],
+              ),
+              Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0).r,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
                           fontSizeDropDown(context, setState, AppColors.black),
+                          greenContainer(
+                            context,
+                            100.0.h,
+                            Container(
+                              child: Text(
+                                hadithByCategory.hadithList.isNotEmpty
+                                    ? hadithByCategory.hadithList.first.nameHadith
+                                    : "لا يوجد حديث",
+                                style: AppTextStyles.vexatext18style,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            width: MediaQuery.sizeOf(context).width / 1 / 2 * .5,
+                          ),
                         ],
                       ),
-                      width: MediaQuery.sizeOf(context).width,
                     ),
                   ),
-                ),
-                Padding(
-                  padding: orientation(
-                      context,
-                      const EdgeInsets.only(top: 60).r,
-                      const EdgeInsets.only(top: 55).r),
-                  child: Align(
-                      alignment: Alignment.topCenter,
-                      child: azkarBuild(context)),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0).r,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        fontSizeDropDown(context, setState, AppColors.black),
-                        greenContainer(
-                          context,
-                          100.0.h,
-                          Container(
-                            child: Text(
-                              hadithByCategory.hadithList.isNotEmpty
-                                  ? hadithByCategory.hadithList.first.nameHadith
-                                  : "لا يوجد حديث",
-                              style: AppTextStyles.vexatext18style,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          width: MediaQuery.sizeOf(context).width / 1 / 2 * .5,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: SizedBox(
-                        width: MediaQuery.sizeOf(context).width / 1 / 2 * .9,
-                        child: azkarBuild(context))),
-              ],
-            )),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: SizedBox(
+                          width: MediaQuery.sizeOf(context).width / 1 / 2 * .9,
+                          child: azkarBuild(context))),
+                ],
+              )),
+        ),
+        )
       ),
     );
   }

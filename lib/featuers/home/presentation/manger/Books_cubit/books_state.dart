@@ -21,3 +21,12 @@ class ClassesError extends BooksState {
 
   ClassesError(this.error);
 }
+class SahihsLoadedState extends BooksState {
+  final List<SahihBukhariModels> sahihclasses;
+  SahihsLoadedState(this.sahihclasses);
+}
+
+class SahihSelected extends BooksState {
+  final SahihBukhariModels sahihselectedClass;
+  SahihSelected(this.sahihselectedClass);
+}

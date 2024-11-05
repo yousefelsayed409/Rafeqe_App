@@ -4,6 +4,7 @@ import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
+import 'package:quranapp/core/widgets/lottie.dart';
 
 class QiblahScreen extends StatefulWidget {
   const QiblahScreen({super.key});
@@ -74,8 +75,8 @@ class _QiblahScreenState extends State<QiblahScreen> with SingleTickerProviderSt
       stream: FlutterQiblah.qiblahStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(color: AppColors.green),
+          return  Center(
+            child: circleLoading(150.0, 150.0),
           );  
         }
 

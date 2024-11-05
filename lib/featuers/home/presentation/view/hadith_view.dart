@@ -9,7 +9,9 @@ import 'package:quranapp/core/models/all_hadith.dart';
 import 'package:quranapp/core/utils/app_assets.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
+import 'package:quranapp/core/widgets/custom_navigation.dart';
 import 'package:quranapp/core/widgets/hadith_item.dart';
+import 'package:quranapp/core/widgets/lottie.dart';
 import 'package:quranapp/core/widgets/menu_item_to_hisn.dart';
 import 'package:quranapp/core/widgets/widgets.dart';
 import 'package:quranapp/featuers/home/data/model/calss_model.dart';
@@ -81,7 +83,8 @@ class HadithView extends StatelessWidget {
                       children: [
                         MenuItemToHisn(
                           onTap: () {
-                            screenModalBottomSheet(
+                          AppFunctions.  screenModalBottomSheet(
+                            color: AppColors.coloBackHadith2,
                                 context, hadithBuild(context));
                           },
                           icon: FlutterIslamicIcons.hadji,
@@ -93,7 +96,8 @@ class HadithView extends StatelessWidget {
                           colorIcon: AppColors.black,
                           label: 'الطب النبوي',
                           onTap: () {
-                            screenModalBottomSheet(
+                          AppFunctions.  screenModalBottomSheet(
+                            color: AppColors.coloBackHadith2,
                                 context, booksBuild(context));
                           },
                         ),
@@ -111,34 +115,34 @@ class HadithView extends StatelessWidget {
     );
   }
 }
-void screenModalBottomSheet(BuildContext context, Widget child) {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-    ),
-    builder: (BuildContext context) {
-      return Container(
-        decoration: BoxDecoration(
-          color: AppColors.coloBackHadith2,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        padding: EdgeInsets.all(16.r),
-        height: MediaQuery.of(context).size.height * 0.85,
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child:      customClose(context),
-            ),
-            Expanded(child: child),
-          ],
-        ),
-      );
-    },
-  );
-}
+// void screenModalBottomSheet(BuildContext context, Widget child) {
+//   showModalBottomSheet(
+//     context: context,
+//     isScrollControlled: true,
+//     shape: RoundedRectangleBorder(
+//       borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+//     ),
+//     builder: (BuildContext context) {
+//       return Container(
+//         decoration: BoxDecoration(
+//           color: AppColors.coloBackHadith2,
+//           borderRadius: BorderRadius.circular(16),
+//         ),
+//         padding: EdgeInsets.all(16.r),
+//         height: MediaQuery.of(context).size.height * 0.85,
+//         child: Column(
+//           children: [
+//             Align(
+//               alignment: Alignment.topRight,
+//               child:      customClose(context),
+//             ),
+//             Expanded(child: child),
+//           ],
+//         ),
+//       );
+//     },
+//   );
+// }
 
 Widget booksBuild(BuildContext context) {
   Future<List<Class>> classesFuture = context.read<BooksCubit>().getClasses();
@@ -148,7 +152,7 @@ Widget booksBuild(BuildContext context) {
       future: classesFuture,
       builder: (BuildContext context, AsyncSnapshot<List<Class>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: const CircularProgressIndicator(color: AppColors.white,));
+          return  Center(child: circleLoading(150.0, 150.0));
           // return Center(child: bookLoading(150.0, 150.0));
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error.toString()}'));
@@ -192,7 +196,10 @@ Widget booksBuild(BuildContext context) {
                 ),
                 onTap: () {
                   context.read<BooksCubit>().selectClass(classes[index]);
-                  screenModalBottomSheet(context, BooksView());
+                  NavigationHelper.navigateTo(context, BooksView());
+                // AppFunctions.  screenModalBottomSheet(
+                //   color: AppColors.coloBackHadith2,
+                //   context, BooksView());
                 },
               ),
             ),
@@ -229,13 +236,17 @@ Widget hadithBuild(BuildContext context) {
                             BorderRadius.all(Radius.circular(8)),
                         color: AppColors.coloBackHadith1),
                     child: InkWell(
-                      onTap: () {
-                        screenModalBottomSheet(
-                            context,
-                            HadithItem(
+                      onTap: () {  
+                        NavigationHelper.navigateTo(context, HadithItem(
                               hadith: allHadithDetails[index].toString().trim(),
-                            )
-                            );
+                            ));
+                      //  AppFunctions. screenModalBottomSheet(
+                      //   color: AppColors.coloBackHadith2,
+                      //       context,
+                      //       HadithItem(
+                      //         hadith: allHadithDetails[index].toString().trim(),
+                      //       )
+                      //       );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,

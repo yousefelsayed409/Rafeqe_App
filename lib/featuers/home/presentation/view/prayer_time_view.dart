@@ -8,6 +8,7 @@ import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/widgets/brain.dart';
 import 'package:quranapp/core/widgets/clock.dart';
 import 'package:intl/intl.dart';
+import 'package:quranapp/core/widgets/lottie.dart';
 import 'package:quranapp/featuers/home/presentation/view/widget/pray_card.dart';
 
 class PrayerTimeView extends StatefulWidget {
@@ -58,10 +59,8 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
         var jsonData = value.getJson();
         if (jsonData == null || jsonData['data'] == null || jsonData['data']['timings'] == null) {
           return Scaffold(
-            body: const Center(
-              child: CircularProgressIndicator(
-                color: AppColors.green,
-              ),
+            body:  Center(
+              child: circleLoading(150.0, 150.0)
             ),
           );
         }

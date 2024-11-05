@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:quranapp/core/widgets/brain.dart';
 import 'package:flutter/material.dart';
 import 'package:quranapp/featuers/home/data/model/calss_model.dart';
+import 'package:quranapp/featuers/home/data/model/sahih_model.dart';
 
 
 
@@ -17,6 +18,14 @@ Future<List<Class>> fetchClasses() async {
       .map((i) => Class.fromJson(i as Map<String, dynamic>))
       .toList();
 } 
+Future<List<SahihBukhariModels>> fetchAllSahihBukari() async {
+  String jsonString = await rootBundle.loadString('assets/books/sahih_al_bukhari.json');
+  final jsonResult = jsonDecode(jsonString);
+  return (jsonResult['sahihAllBukhari'] as List)
+      .map((i) => SahihBukhariModels.fromJson(i as Map<String, dynamic>))
+      .toList();
+} 
+
 
 
 

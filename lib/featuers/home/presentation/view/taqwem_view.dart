@@ -1,16 +1,27 @@
+import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:quranapp/core/utils/app_color.dart';
+import 'package:quranapp/core/utils/app_styles.dart';
 
-class HijriGregorianCalendarView extends StatefulWidget {
+class TaqwemView extends StatefulWidget {
   @override
-  _HijriGregorianCalendarViewState createState() => _HijriGregorianCalendarViewState();
+  _TaqwemViewState createState() => _TaqwemViewState();
 }
 
-class _HijriGregorianCalendarViewState extends State<HijriGregorianCalendarView> {
+class _TaqwemViewState extends State<TaqwemView> {
   late String _gregorianDate;
   late String _hijriDate;
-  late String _currentDay;
+  late String _currentDay; 
+
+   final List<String> arabicMonths = [
+    'محرم', 'صفر', 'ربيع الأول', 'ربيع الآخر',
+    'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان',
+    'رمضان', 'شوّال', 'ذو القعدة', 'ذو الحجة'
+  ];
+
 
   @override
   void initState() {
@@ -22,72 +33,94 @@ class _HijriGregorianCalendarViewState extends State<HijriGregorianCalendarView>
     _currentDay = DateFormat.EEEE('ar').format(now); // الحصول على اليوم بصيغة عربية
 
     // تهيئة التاريخ الهجري بصيغة عربية باستخدام مكتبة hijri
-    final hijri = HijriCalendar.fromDate(now);
-    _hijriDate = '${hijri.hDay} ${hijri.longMonthName} ${hijri.hYear} هـ'; // التاريخ الهجري باللغة العربية
+    // final hijri = HijriCalendar.fromDate(now);
+    // _hijriDate = '${hijri.hDay} ${hijri.longMonthName} ${hijri.hYear} هـ'; // التاريخ الهجري باللغة العربية
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('التقويم الهجري والميلادي', style: TextStyle(fontSize: 18)),
-        centerTitle: true,
-      ),
+        var _today = HijriCalendar.now();
+
+        ArabicNumbers arabicNumber = ArabicNumbers();
+
+    return Scaffold( 
+      backgroundColor: AppColors.bluecolorobacity,
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               'اليوم: $_currentDay', // عرض اليوم
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.green),
+              style: AppTextStyles.vexatextstyle.copyWith(
+                color: AppColors.black,
+                fontSize: 20
+              ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.green[100], // لون خلفية
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Text(
-                    'التاريخ الميلادي:',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    _gregorianDate,
-                    style: TextStyle(fontSize: 18, color: Colors.black54),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
-            Divider(thickness: 2),
-            SizedBox(height: 30),
+            const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 color: Colors.blue[100], // لون خلفية
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(32),
               ),
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Text(
+                   Text(
                     'التاريخ الهجري:',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                   style: AppTextStyles.vexatextstyle.copyWith(
+                color: AppColors.black,
+                fontSize: 20
+              ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
+                  Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${arabicNumber.convert(_today.hDay)} / '
+                            '${arabicMonths[_today.hMonth - 1]} / '
+                            '${arabicNumber.convert(_today.hYear)} هـ',
+                            style: AppTextStyles.vexatextstyle.copyWith(
+                color: AppColors.black,
+                fontSize: 20
+              ),
+                          ),
+                        ],
+                      ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+            const Divider(thickness: 2),
+            const SizedBox(height: 30),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.green[100], // لون خلفية
+                borderRadius: BorderRadius.circular(32),
+              ),
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                   Text(
+                    'التاريخ الميلادي:',
+                     style: AppTextStyles.vexatextstyle.copyWith(
+                color: AppColors.black,
+                fontSize: 20
+              ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10),
                   Text(
-                    _hijriDate, // التاريخ الهجري باللغة العربية
-                    style: TextStyle(fontSize: 18, color: Colors.black54),
+                    _gregorianDate,
+                     style: AppTextStyles.vexatextstyle.copyWith(
+                color: AppColors.black,
+                fontSize: 18
+              ),
                     textAlign: TextAlign.center,
                   ),
                 ],

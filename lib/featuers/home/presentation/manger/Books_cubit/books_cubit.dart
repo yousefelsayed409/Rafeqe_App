@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:quranapp/core/service/service.dart';
 import 'package:quranapp/featuers/home/data/model/calss_model.dart';
+import 'package:quranapp/featuers/home/data/model/sahih_model.dart';
 
 part 'books_state.dart';
 
@@ -37,10 +38,40 @@ class BooksCubit extends Cubit<BooksState> {
       // In case of error, throw the exception
       throw e;
     }
-  }
+  } 
 
 
-  void selectClass(Class selectedClass) {
+   void selectClass(Class selectedClass) {
     emit(ClassSelected(selectedClass));
   }
+
+
+  Future<List<SahihBukhariModels>> getAllSahihAlBukhari() async {
+    // Emit loading state
+    emit(ClassesLoading());
+
+    try {
+      // Fetch classes
+      final classes = await fetchAllSahihBukari();
+
+      // Emit loaded state
+      emit(SahihsLoadedState(classes));
+
+      // Return the fetched classes
+      return classes;
+    } catch (e, s) {
+      print('Exception details:\n $e');
+      print('Stack trace:\n $s');
+      emit(ClassesError(e));
+
+      // In case of error, throw the exception
+      throw e;
+    }
+  }
+
+void sahihselectClass(SahihBukhariModels sahihselectedClass) {
+    emit(SahihSelected(sahihselectedClass));
+  }
+
+  
 }

@@ -10,19 +10,19 @@ import 'package:quranapp/core/widgets/widgets.dart';
 import '../../manger/Books_cubit/books_cubit.dart';
 
 
-class BooksView extends StatefulWidget {
+class BooksSahihWidget extends StatefulWidget {
   @override
-  State<BooksView> createState() => _BooksViewState();
+  State<BooksSahihWidget> createState() => _BooksSahihWidgetState();
 }
 
-class _BooksViewState extends State<BooksView> {
+class _BooksSahihWidgetState extends State<BooksSahihWidget> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
-          backgroundColor: AppColors.coloBackHadith2,
+          backgroundColor: AppColors.coloBackHadith1,
           body: Container(
             decoration: BoxDecoration(
                 color: AppColors.coloBackHadith1,
@@ -35,7 +35,7 @@ class _BooksViewState extends State<BooksView> {
                       alignment: Alignment.bottomCenter,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0).r,
-                        child: booksView(context),
+                        child: buildSahihbukahri(context),
                       ),
                     ),
                     Align(
@@ -60,7 +60,7 @@ class _BooksViewState extends State<BooksView> {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 48.0).r,
-                        child: booksView(context),
+                        child: buildSahihbukahri(context),
                       ),
                     ),
                     Align(
@@ -69,7 +69,7 @@ class _BooksViewState extends State<BooksView> {
                         padding: const EdgeInsets.all(8.0).r,
                         child: Column(
                           children: [
-                            // customClose(context),
+                            customClose(context),
                             fontSizeDropDown(context, setState,
                             
                                 AppColors.black),
@@ -84,15 +84,15 @@ class _BooksViewState extends State<BooksView> {
     );
   }
 
-  Widget booksView(BuildContext context) {
+  Widget buildSahihbukahri(BuildContext context) {
     return BlocBuilder<BooksCubit, BooksState>(
       builder: (context, state) {
-        if (state is ClassSelected) {
+        if (state is SahihSelected) {
           return Padding(
             padding: orientation(context, const EdgeInsets.only(top: 30.0).r,
                 const EdgeInsets.only(top: 16.0).r),
             child: PageView.builder(
-                itemCount: state.selectedClass.pages.length,
+                itemCount: state.sahihselectedClass.pages.length,
                 itemBuilder: (context, index) {
                   return SingleChildScrollView(
                     child: (index % 2 == 0
@@ -114,7 +114,7 @@ class _BooksViewState extends State<BooksView> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          state.selectedClass.pages[index]
+                                          state.sahihselectedClass.pages[index]
                                                       .title ==
                                                   ''
                                               ? Container()
@@ -132,9 +132,9 @@ class _BooksViewState extends State<BooksView> {
                                                             horizontal: 32.0)
                                                         .r,
                                                     child: Text(
-                                                      state.selectedClass
+                                                      state.sahihselectedClass
                                                           .pages[index].title,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: AppColors.white,
                                                           fontSize: 22,
                                                           fontWeight:
@@ -150,55 +150,20 @@ class _BooksViewState extends State<BooksView> {
                                                           .width,
                                                 ),
                                           const Divider(
-                                            color:AppColors.coloBackHadith2 ,
+                                            color:AppColors.coloBackHadith2,
                                           ),
                                         ],
                                       )),
                                       TextSpan(
                                         text: state
-                                            .selectedClass.pages[index].text,
+                                            .sahihselectedClass.pages[index].text,
                                         style: TextStyle(
                                             color: AppColors.black,
                                             fontSize: AzkarItem.fontSizeAzkar,
                                             fontFamily: 'naskh',
                                             fontStyle: FontStyle.italic),
                                       ),
-                                      WidgetSpan(
-                                          child: Column(
-                                        children: [
-                                          state.selectedClass.pages[index]
-                                                      .footnote ==
-                                                  ''
-                                              ? Container()
-                                              : Column(
-                                                  children: [
-                                                    const Divider(
-                                                      color:AppColors.coloBackHadith2 ,
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 32.0),
-                                                      child: Text(
-                                                        state
-                                                            .selectedClass
-                                                            .pages[index]
-                                                            .footnote,
-                                                        style: TextStyle(
-                                                            color: AppColors.black,
-                                                            fontSize: 20,
-                                                            fontFamily: 'naskh',
-                                                            fontStyle: FontStyle
-                                                                .italic),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                          const Divider(
-                                            color:AppColors.coloBackHadith2 ,
-                                          ),
-                                        ],
-                                      ))
+                                      
                                     ]),
                                     textAlign: TextAlign.justify,
                                     overflow: TextOverflow.visible,
@@ -209,22 +174,22 @@ class _BooksViewState extends State<BooksView> {
                                     // scrollPhysics: const ClampingScrollPhysics(),
                                     textDirection: TextDirection.rtl,
                                   ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 32.0),
-                                      child: Text(
-                                        state.selectedClass.pages[index]
-                                            .pageNumber,
-                                        style: TextStyle(
-                                          color: AppColors.black,
-                                          fontSize: 18,
-                                          fontFamily: 'kufi',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  // Align(
+                                  //   alignment: Alignment.centerLeft,
+                                  //   child: Padding(
+                                  //     padding: const EdgeInsets.symmetric(
+                                  //         horizontal: 32.0),
+                                  //     child: Text(
+                                  //       state.selectedClass.pages[index]
+                                  //           .pageNumber,
+                                  //       style: TextStyle(
+                                  //         color: AppColors.black,
+                                  //         fontSize: 18,
+                                  //         fontFamily: 'kufi',
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -247,7 +212,7 @@ class _BooksViewState extends State<BooksView> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          state.selectedClass.pages[index]
+                                          state.sahihselectedClass.pages[index]
                                                       .title ==
                                                   ''
                                               ? Container()
@@ -264,9 +229,9 @@ class _BooksViewState extends State<BooksView> {
                                                             horizontal: 32.0)
                                                         .r,
                                                     child: Text(
-                                                      state.selectedClass
+                                                      state.sahihselectedClass
                                                           .pages[index].title,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: AppColors.white,
                                                           fontSize: 22,
                                                           fontWeight:
@@ -282,57 +247,20 @@ class _BooksViewState extends State<BooksView> {
                                                           .width,
                                                 ),
                                           const Divider(
-                                            color:AppColors.coloBackHadith2 ,
+                                            color:AppColors.coloBackHadith2,
                                           ),
                                         ],
                                       )),
                                       TextSpan(
                                         text: state
-                                            .selectedClass.pages[index].text,
+                                            .sahihselectedClass.pages[index].text,
                                         style: TextStyle(
                                             color: AppColors.black,
                                             fontSize: AzkarItem.fontSizeAzkar,
                                             fontFamily: 'naskh',
                                             fontStyle: FontStyle.italic),
                                       ),
-                                      WidgetSpan(
-                                          child: Column(
-                                        children: [
-                                          state.selectedClass.pages[index]
-                                                      .footnote ==
-                                                  ''
-                                              ? Container()
-                                              : Column(
-                                                  children: [
-                                                    const Divider(
-                                           color: AppColors.bluecolor,
-
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 32.0),
-                                                      child: Text(
-                                                        state
-                                                            .selectedClass
-                                                            .pages[index]
-                                                            .footnote,
-                                                        style: TextStyle(
-                                                            color: AppColors.black,
-                                                            fontSize: 20,
-                                                            fontFamily: 'naskh',
-                                                            fontStyle: FontStyle
-                                                                .italic),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                          const Divider(
-                                        color:AppColors.coloBackHadith2 ,
-
-                                          ),
-                                        ],
-                                      ))
+                                      
                                     ]),
                                     textAlign: TextAlign.justify,
                                     // showCursor: true,
@@ -342,22 +270,22 @@ class _BooksViewState extends State<BooksView> {
                                     // scrollPhysics: const ClampingScrollPhysics(),
                                     textDirection: TextDirection.rtl,
                                   ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 32.0),
-                                      child: Text(
-                                        state.selectedClass.pages[index]
-                                            .pageNumber,
-                                        style: TextStyle(
-                                          color: AppColors.black,
-                                          fontSize: 18,
-                                          fontFamily: 'kufi',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  // Align(
+                                  //   alignment: Alignment.centerLeft,
+                                  //   child: Padding(
+                                  //     padding: const EdgeInsets.symmetric(
+                                  //         horizontal: 32.0),
+                                  //     child: Text(
+                                  //       state.selectedClass.pages[index]
+                                  //           .pageNumber,
+                                  //       style: TextStyle(
+                                  //         color: AppColors.black,
+                                  //         fontSize: 18,
+                                  //         fontFamily: 'kufi',
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

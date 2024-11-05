@@ -5,6 +5,7 @@ import 'package:quranapp/core/models/azkar_by_category.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
 import 'package:quranapp/core/widgets/azkar_item.dart';
+import 'package:quranapp/core/widgets/lottie.dart';
 import 'package:quranapp/core/widgets/widgets.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -33,7 +34,7 @@ class _RwqyaItemState extends State<RwqyaItem> {
       future: rwqyaByCategory.getrwqyaByCategory(widget.rwqya),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: circleLoading(150.0, 150.0));
         } else if (snapshot.hasError) {
           return Center(child: Text("حدث خطأ أثناء تحميل البيانات"));
         } else {
