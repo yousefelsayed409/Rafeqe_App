@@ -72,7 +72,7 @@ class _HadithItemState extends State<HadithItem> {
                                 style: AppTextStyles.vexatext18style,
                               ),
                             ),
-                            fontSizeDropDown(context, setState, AppColors.black),
+                            fontSizeDropDowntow(context, setState, AppColors.black),
                           ],
                         ),
                         width: MediaQuery.sizeOf(context).width,
@@ -99,7 +99,7 @@ class _HadithItemState extends State<HadithItem> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          fontSizeDropDown(context, setState, AppColors.black),
+                          fontSizeDropDowntow(context, setState, AppColors.black),
                           greenContainer(
                             context,
                             100.0.h,
@@ -198,7 +198,7 @@ class _HadithItemState extends State<HadithItem> {
                                       color: AppColors.black,
                                       fontSize: HadithItem.fontSizeAzkar,
                                       fontFamily: 'naskh',
-                                      // fontStyle: FontStyle.italic,
+                                      
                                     ),
                                   )),
                             ),
@@ -318,8 +318,12 @@ class _HadithItemState extends State<HadithItem> {
                   ],
                 );
               }).toList()
-            : [Text("لا يوجد حديث لعرضه")],
+            : [const Text("لا يوجد حديث لعرضه")],
       ),
     );
-  }
+  } 
+
+
+
+  
 }

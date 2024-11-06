@@ -260,8 +260,11 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           MenuItem(
                             onTap: () {
-                              NavigationHelper.navigateTo(
-                                  context, const SahihalBukhariView());
+                              AppFunctions.screenModalBottomSheet(
+                                color: AppColors.coloBackHadith2,
+                                context, const SahihalBukhariView());
+                              // NavigationHelper.navigateTo(
+                              //     context, const SahihalBukhariView());
                             },
                             icon: FlutterIslamicIcons.quran,
                             label: 'صحيح البخارى',

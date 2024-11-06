@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/widgets/azkar_item.dart';
+import 'package:quranapp/core/widgets/hadith_item.dart';
 import 'package:quranapp/core/widgets/lists.dart';
 import 'package:quranapp/featuers/home/presentation/manger/azkar_cubit/azkar_cubit.dart';
 
@@ -335,6 +336,93 @@ Widget greenContainer(BuildContext context, double height, Widget myWidget,
     ),
   );
 }
+
+Widget fontSizeDropDowntow(BuildContext context, var setState, Color color) {
+  AzkarCubit cubit = AzkarCubit.get(context);
+  return DropdownButton2(
+    isExpanded: true,
+    items: [
+      DropdownMenuItem<String>(
+        child: FlutterSlider(
+          values: [HadithItem.fontSizeAzkar],
+          max: 40,
+          min: 18,
+          rtl: true,
+          trackBar: FlutterSliderTrackBar(
+            inactiveTrackBarHeight: 5,
+            activeTrackBarHeight: 5,
+            inactiveTrackBar: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: AppColors.white,
+            ),
+            activeTrackBar: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: AppColors.bluecolor),
+          ),
+          handlerAnimation: const FlutterSliderHandlerAnimation(
+              curve: Curves.elasticOut,
+              reverseCurve: null,
+              duration: Duration(milliseconds: 700),
+              scale: 1.4),
+          onDragging: (handlerIndex, lowerValue, upperValue) {
+            lowerValue = lowerValue;
+            upperValue = upperValue;
+            HadithItem.fontSizeAzkar = lowerValue;
+            cubit.saveAzkarFontSize(HadithItem.fontSizeAzkar);
+            setState(() {});
+          },
+          handler: FlutterSliderHandler(
+            decoration: const BoxDecoration(),
+            child: Material(
+              type: MaterialType.circle,
+              color: Colors.transparent,
+              elevation: 3,
+              child: SvgPicture.asset('assets/svg/slider_ic.svg',
+              color: AppColors.bluecolor,
+              ),
+            ),
+          ),
+        ),
+      )
+    ],
+    value: selectedValue,
+    onChanged: (value) {
+      setState(() {
+        selectedValue = value as String;
+      });
+    },
+    customButton: Icon(
+      Icons.format_size,
+      size: 25.h,
+      color: color,
+    ),
+    iconStyleData: IconStyleData(
+      iconSize: 40.h,
+    ),
+    buttonStyleData: ButtonStyleData(
+      height: 60.w,
+      width: 60.w,
+      elevation: 0,
+    ),
+    dropdownStyleData: DropdownStyleData(
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface.withOpacity(.9),
+            borderRadius: const BorderRadius.all(Radius.circular(8))),
+        padding: const EdgeInsets.only(left: 1, right: 1),
+        maxHeight: 230,
+        width: 280,
+        elevation: 0,
+        offset: const Offset(0, 0),
+        scrollbarTheme: ScrollbarThemeData(
+          radius: const Radius.circular(8),
+          thickness: MaterialStateProperty.all(6),
+        )),
+    menuItemStyleData: MenuItemStyleData(
+      height: 45.h,
+    ),
+  );
+}
+
 
 
 // platformView(var p1, p2) {

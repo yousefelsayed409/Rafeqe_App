@@ -21,13 +21,9 @@ class SahihalBukhariView extends StatelessWidget {
     Future<List<SahihBukhariModels>> classesFuture = context.read<BooksCubit>().getAllSahihAlBukhari();
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-        title: Text('صحيح البخاري', style: AppTextStyles.vexatext18style,),
-      ),
-      backgroundColor: AppColors.coloBackHadith2,
+     
       body: Container(
+        color: AppColors.coloBackHadith2,
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0).r,
       child: FutureBuilder<List<SahihBukhariModels>>(
         future: classesFuture,
