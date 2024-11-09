@@ -15,52 +15,10 @@ import 'package:quranapp/core/widgets/hadith_item.dart';
 import 'package:quranapp/featuers/home/presentation/manger/azkar_cubit/azkar_cubit.dart';
 
 
-double lowerValue = 25.sp;
-double upperValue = 40.sp;
+
 String? selectedValue;
  
-Widget container(BuildContext context, Widget myWidget, bool show,
-    {double? height, double? width, Color? color}) {
-  return ClipRRect(
-    child: Container(
-      height: height,
-      width: width!.w,
-      alignment: Alignment.bottomCenter,
-      decoration: BoxDecoration(
-        color: color ?? Theme.of(context).colorScheme.secondary,
-      ),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          show == true
-              ? Transform.translate(
-                  offset: const Offset(0, -10),
-                  child: Opacity(
-                    opacity: .05,
-                    child: SvgPicture.asset(
-                      'assets/svg/azkary.svg',
-                      width: MediaQuery.sizeOf(context).width,
-                    ),
-                  ),
-                )
-              : Container(),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 15.h,
-              width: MediaQuery.sizeOf(context).width,
-              color: Theme.of(context).colorScheme.surface,
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: myWidget,
-          )
-        ],
-      ),
-    ),
-  );
-}
+
 
 
 Widget rightPage(BuildContext context, Widget child) {
@@ -112,9 +70,9 @@ Widget leftPage(BuildContext context, Widget child) {
       Padding(
         padding: const EdgeInsets.only(left: 4.0, top: 16.0, bottom: 16.0),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: AppColors.black,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12))),
           child: child,
@@ -123,9 +81,9 @@ Widget leftPage(BuildContext context, Widget child) {
       Padding(
         padding: const EdgeInsets.only(left: 8.0, top: 16.0, bottom: 16.0),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: AppColors.black,
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   bottomLeft: Radius.circular(12))),
           child: child,
@@ -147,29 +105,7 @@ Widget leftPage(BuildContext context, Widget child) {
 }
 
 
-// allModalBottomSheet(BuildContext context, Widget child) {
-//   double hei = MediaQuery.sizeOf(context).height;
-//   double wid = MediaQuery.sizeOf(context).width;
-//   showModalBottomSheet(
-//       context: context,
-//       constraints: BoxConstraints(
-//           maxWidth:
-//               platformView(orientation(context, wid, wid / 1 / 2), wid / 1 / 2),
-//           maxHeight: orientation(
-//               context, hei * 3 / 4, platformView(hei, hei * 3 / 4))),
-//       elevation: 0.0,
-//       shape: const RoundedRectangleBorder(
-//         borderRadius: BorderRadius.only(
-//           topLeft: Radius.circular(8.0),
-//           topRight: Radius.circular(8.0),
-//         ),
-//       ),
-//       backgroundColor: Theme.of(context).colorScheme.background,
-//       isScrollControlled: true,
-//       builder: (BuildContext context) {
-//         return child;
-//       });
-// }
+
 
 
 Widget fontSizeDropDown(BuildContext context, var setState, Color color) {
