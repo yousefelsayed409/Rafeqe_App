@@ -12,26 +12,7 @@
 //   PrayerTimesCubit() : super(PrayerTimesInitial());
   
 
-//   // // تغيير حالة الزر عند النقر
-//   // void click() {
-//   //   _clicked = !_clicked;
-//   //   emit(PrayerTimesButtonClicked());
-//   // }
 
-//   // // تبديل الثيمات بالألوان
-//   // void switchTheme() {
-//   //   colorIndex++;
-//   //   if (colorIndex > 6) {
-//   //     colorIndex = 0;
-//   //   }
-//   //   emit(PrayerTimesThemeChanged(colorIndex));
-//   // }
-
-//   // // تبديل اللغة
-//   // void switchLanguage() {
-//   //   arabic = !arabic;
-//   //   emit(PrayerTimesLanguageChanged(arabic));
-//   // }
 
 //   // // تحديد الموقع الحالي
 //   // Future<void> determinePosition() async {

@@ -1,12 +1,13 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
 
 class TaqwemView extends StatefulWidget {
+  const TaqwemView({super.key});
+
   @override
   _TaqwemViewState createState() => _TaqwemViewState();
 }
