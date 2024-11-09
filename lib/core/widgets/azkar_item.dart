@@ -1,9 +1,7 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quranapp/core/models/azkar_by_category.dart';
-import 'package:quranapp/core/share/share_widget.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
 import 'package:quranapp/core/widgets/lists.dart';

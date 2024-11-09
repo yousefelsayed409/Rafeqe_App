@@ -1,8 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:quranapp/core/service/service.dart';
+import 'package:quranapp/core/function/app_function.dart';
 import 'package:quranapp/featuers/home/data/model/calss_model.dart';
 import 'package:quranapp/featuers/home/data/model/sahih_model.dart';
 

@@ -2,8 +2,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:quranapp/core/utils/app_color.dart';
-import 'package:quranapp/core/utils/app_styles.dart';
 import 'package:quranapp/core/widgets/lottie.dart';
 
 class QiblahScreen extends StatefulWidget {
@@ -13,12 +11,12 @@ class QiblahScreen extends StatefulWidget {
   State<QiblahScreen> createState() => _QiblahScreenState();
 }
 
-Animation<double>? animation;
-AnimationController? _animationController;
-double begin = 0.0;
-bool hasPermission = false;
-
 class _QiblahScreenState extends State<QiblahScreen> with SingleTickerProviderStateMixin {
+  Animation<double>? animation;
+  AnimationController? _animationController;
+  double begin = 0.0;
+  bool hasPermission = false;
+
   @override
   void initState() {
     super.initState();
@@ -53,17 +51,6 @@ class _QiblahScreenState extends State<QiblahScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   automaticallyImplyLeading: true,
-        //   iconTheme: Theme.of(context).primaryIconTheme,
-        //   backgroundColor: AppColors.black1,
-        //   title: Text(
-        //     "ألقبله ",
-        //     style: AppTextStyles.tajawalstyle22.copyWith(
-        //       color: AppColors.white,
-        //     ),
-        //   ),
-        // ),
         backgroundColor: const Color.fromARGB(255, 48, 48, 48),
         body: hasPermission ? buildQiblahView() : buildPermissionRequest(),
       ),
@@ -75,9 +62,9 @@ class _QiblahScreenState extends State<QiblahScreen> with SingleTickerProviderSt
       stream: FlutterQiblah.qiblahStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return  Center(
+          return Center(
             child: circleLoading(150.0, 150.0),
-          );  
+          );
         }
 
         final qiblahDirection = snapshot.data;
@@ -114,11 +101,34 @@ class _QiblahScreenState extends State<QiblahScreen> with SingleTickerProviderSt
   }
 
   Widget buildPermissionRequest() {
-    return const Center(
-      child: Text(
-        'يجب منح إذن الموقع لعرض اتجاه القبلة',
-        style: TextStyle(color: Colors.white, fontSize: 18),
-        textAlign: TextAlign.center,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'يجب منح إذن الموقع لعرض اتجاه القبلة',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () async {
+              final result = await Permission.location.request();
+              setState(() {
+                hasPermission = (result == PermissionStatus.granted);
+              });
+            },
+            child: const Text('إعادة المحاولة'),
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              // فتح إعدادات التطبيق
+              openAppSettings();
+            },
+            child: const Text('فتح إعدادات التطبيق'),
+          ),
+        ],
       ),
     );
   }

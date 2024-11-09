@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
-import 'package:quranapp/core/widgets/brain.dart';
+import 'package:quranapp/core/service/prayer_time_service.dart';
 
 class prayCard extends StatefulWidget {
   final String label;
@@ -23,7 +22,7 @@ class _prayCardState extends State<prayCard> {
   Widget build(BuildContext context) {
     return Card(
       color:
-          context.read<Brain>().clicked ? Colors.grey : const Color(0xffF2F2F2),
+          context.read<PrayerTimeService>().clicked ? Colors.grey : const Color(0xffF2F2F2),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       elevation: 0,
       margin: const EdgeInsets.all(15),

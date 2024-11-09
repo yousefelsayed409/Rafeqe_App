@@ -1,32 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:location/location.dart' as loc;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:quranapp/core/widgets/brain.dart';
+import 'package:quranapp/core/service/prayer_time_service.dart';
 import 'package:flutter/material.dart';
-import 'package:quranapp/featuers/home/data/model/calss_model.dart';
-import 'package:quranapp/featuers/home/data/model/sahih_model.dart';
-
-
-
-Future<List<Class>> fetchClasses() async {
-  String jsonString = await rootBundle.loadString('assets/books/altib.json');
-  final jsonResult = jsonDecode(jsonString);
-  return (jsonResult['class'] as List)
-      .map((i) => Class.fromJson(i as Map<String, dynamic>))
-      .toList();
-} 
-Future<List<SahihBukhariModels>> fetchAllSahihBukari() async {
-  String jsonString = await rootBundle.loadString('assets/books/sahih_al_bukhari.json');
-  final jsonResult = jsonDecode(jsonString);
-  return (jsonResult['sahihAllBukhari'] as List)
-      .map((i) => SahihBukhariModels.fromJson(i as Map<String, dynamic>))
-      .toList();
-} 
-
-
 
 
 
@@ -44,7 +21,7 @@ class LocationService {
       if (permissionStatus == PermissionStatus.granted && isConnected) {
         print("Location permission granted and internet connected!");
         // استدعاء دالة fetchPrayerTimes بعد التأكد من تهيئة المتغيرات اللازمة
-        context.read<Brain>().fetchPrayerTimes();
+        context.read<PrayerTimeService>().fetchPrayerTimes();
         return true;
       } else {
         print("Permission denied or no internet connection!");

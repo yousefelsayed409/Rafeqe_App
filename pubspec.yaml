@@ -47,6 +47,9 @@ dependencies:
   lottie: ^3.1.3
   carousel_slider: ^5.0.0
   audioplayers: ^6.1.0
+  google_fonts: ^6.2.1
+  shimmer: ^3.0.0
+  scrollable_positioned_list: ^0.2.3
 
 
 dev_dependencies:
@@ -62,12 +65,9 @@ flutter_launcher_icons:
 flutter:
   uses-material-design: true
   assets:
+    - assets/
     - assets/image/
-    - assets/database/
-    - assets/svg/hijri/
-    - assets/svg/
     - assets/lottie/
-    - assets/share_images/
     - assets/books/
 
 
@@ -105,6 +105,12 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Regular.ttf
+    # - family: quran
+    #   fonts:
+    #     - asset: assets/HafsSmart_08.ttf
+    # - family: me_quran
+    #   fonts:
+    #     - asset: assets/me_quran.ttf
 
 # Configure flutter_launcher_icons
 # flutter_icons:

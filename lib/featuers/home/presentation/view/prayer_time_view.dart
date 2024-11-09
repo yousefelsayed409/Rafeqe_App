@@ -5,10 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:quranapp/core/service/service.dart';
 import 'package:quranapp/core/utils/app_assets.dart';
 import 'package:quranapp/core/utils/app_color.dart';
-import 'package:quranapp/core/widgets/brain.dart';
+import 'package:quranapp/core/service/prayer_time_service.dart';
 import 'package:quranapp/core/widgets/clock.dart';
 import 'package:intl/intl.dart';
 import 'package:quranapp/core/widgets/lottie.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:quranapp/featuers/home/presentation/view/widget/pray_card.dart';
 
 class PrayerTimeView extends StatefulWidget {
@@ -20,6 +21,8 @@ class PrayerTimeView extends StatefulWidget {
 
 class _PrayerTimeViewState extends State<PrayerTimeView> {
   final LocationService _locationService = LocationService();
+  bool isPermissionDenied = false;
+  bool hasPermission = false;
 
   @override
   void initState() {
@@ -31,6 +34,7 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
     bool permissionGranted = await _locationService.requestLocationPermission(context);
 
     if (permissionGranted) {
+      setState(() => isPermissionDenied = false);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('تم الحصول على إذن الموقع بنجاح.'),
@@ -38,6 +42,7 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
         ),
       );
     } else {
+      setState(() => isPermissionDenied = true);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('يجب السماح بإذن الموقع لعرض مواقيت الصلاة.'),
@@ -47,6 +52,10 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
     }
   }
 
+  Future<void> _openAppSettings() async {
+    await openAppSettings();
+  }
+
   String formatTime(String time) {
     final DateTime parsedTime = DateFormat("HH:mm").parse(time);
     return DateFormat("hh:mm a").format(parsedTime); // تحويل الوقت إلى تنسيق 12 ساعة
@@ -54,13 +63,52 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Brain>(
+    return Consumer<PrayerTimeService>(
       builder: (BuildContext context, value, Widget? child) {
         var jsonData = value.getJson();
+
+        if (isPermissionDenied) {
+          return Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Column( 
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'يجب السماح بإذن الموقع لعرض مواقيت الصلاة.',
+                      style: TextStyle(fontSize: 20.sp , 
+                      ),
+                      textAlign: TextAlign.center,
+                    ), 
+              
+                     const SizedBox(height: 20),
+                        ElevatedButton(
+              onPressed: () async {
+                final result = await Permission.location.request();
+                setState(() {
+                  hasPermission = (result == PermissionStatus.granted);
+                });
+              },
+              child: const Text('إعادة المحاولة' ,),
+                        ),
+                        const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: _openAppSettings,
+                      child: const Text('افتح الإعدادات'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+
         if (jsonData == null || jsonData['data'] == null || jsonData['data']['timings'] == null) {
           return Scaffold(
-            body:  Center(
-              child: circleLoading(150.0, 150.0)
+            body: Center(
+              child: circleLoading(150.0, 150.0),
             ),
           );
         }
@@ -76,7 +124,7 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
                   child: Image.asset(
                     AppAssets.imagePrayerTime,
                     fit: BoxFit.cover,
-                    height: MediaQuery.of(context).size.height * 0.5.h,
+                    height: MediaQuery.of(context).size.height * 0.5,
                     width: double.infinity,
                   ),
                 ),
@@ -84,7 +132,9 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                       width: 350.w,
                       height: 270.h,
                       child: const Clock(),

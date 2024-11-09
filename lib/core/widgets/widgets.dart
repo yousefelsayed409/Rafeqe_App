@@ -12,7 +12,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/widgets/azkar_item.dart';
 import 'package:quranapp/core/widgets/hadith_item.dart';
-import 'package:quranapp/core/widgets/lists.dart';
 import 'package:quranapp/featuers/home/presentation/manger/azkar_cubit/azkar_cubit.dart';
 
 
@@ -267,7 +266,8 @@ Widget fontSizeDropDown(BuildContext context, var setState, Color color) {
               type: MaterialType.circle,
               color: Colors.transparent,
               elevation: 3,
-              child: SvgPicture.asset('assets/svg/slider_ic.svg',
+              child: SvgPicture.asset('assets/image/Settings.svg',
+              height: 40.h,
               color: AppColors.bluecolor,
               ),
             ),
@@ -283,7 +283,7 @@ Widget fontSizeDropDown(BuildContext context, var setState, Color color) {
     },
     customButton: Icon(
       Icons.format_size,
-      size: 25.h,
+      size: 30.h,
       color: color,
     ),
     iconStyleData: IconStyleData(
@@ -377,8 +377,10 @@ Widget fontSizeDropDowntow(BuildContext context, var setState, Color color) {
               type: MaterialType.circle,
               color: Colors.transparent,
               elevation: 3,
-              child: SvgPicture.asset('assets/svg/slider_ic.svg',
+              child: SvgPicture.asset('assets/image/Settings.svg',
               color: AppColors.bluecolor,
+                            height: 40.h,
+
               ),
             ),
           ),
@@ -393,7 +395,7 @@ Widget fontSizeDropDowntow(BuildContext context, var setState, Color color) {
     },
     customButton: Icon(
       Icons.format_size,
-      size: 25.h,
+      size: 30.h,
       color: color,
     ),
     iconStyleData: IconStyleData(
@@ -425,33 +427,7 @@ Widget fontSizeDropDowntow(BuildContext context, var setState, Color color) {
 
 
 
-// platformView(var p1, p2) {
-//   return (Platform.isIOS || Platform.isAndroid || Platform.isFuchsia) ? p1 : p2;
-// }
 
-// screenModalBottomSheet(BuildContext context, Widget child) {
-//   double hei = MediaQuery.sizeOf(context).height;
-//   double wid = MediaQuery.sizeOf(context).width;
-//   showModalBottomSheet(
-//       context: context,
-//       constraints: BoxConstraints(
-//           maxWidth: platformView(
-//               orientation(context, wid, wid * .7), wid / 1 / 2 * 1.5),
-//           maxHeight:
-//               orientation(context, hei * .9, platformView(hei, hei * 3 / 4))),
-//       elevation: 0.0,
-//       shape: const RoundedRectangleBorder(
-//         borderRadius: BorderRadius.only(
-//           topLeft: Radius.circular(8.0),
-//           topRight: Radius.circular(8.0),
-//         ),
-//       ),
-//       backgroundColor: Theme.of(context).colorScheme.background,
-//       isScrollControlled: true,
-//       builder: (BuildContext context) {
-//         return child;
-//       });
-// }
 Widget customClose(BuildContext context) {
   return GestureDetector(
     child: Stack(
@@ -471,245 +447,3 @@ Widget customClose(BuildContext context) {
     },
   );
 }
-// Widget borderRadiusContainer(
-//     BuildContext context, bool show, String title, String details,
-//     {double? height, double? width, Color? color}) {
-//   return ClipRRect(
-//     child: Container(
-//       height: height!.h,
-//       width: width!.w,
-//       alignment: Alignment.bottomCenter,
-//       decoration: BoxDecoration(
-//         color: color ?? Theme.of(context).colorScheme.secondary,
-//         borderRadius: const BorderRadius.only(
-//           topLeft: Radius.circular(8),
-//           topRight: Radius.circular(8),
-//         ).r,
-//       ),
-//       child: Stack(
-//         children: [
-//           show == true
-//               ? Transform.translate(
-//                   offset: const Offset(0, -10),
-//                   child: Opacity(
-//                     opacity: .05,
-//                     child: SvgPicture.asset(
-//                       'assets/svg/azkary.svg',
-//                       width: MediaQuery.sizeOf(context).width,
-//                     ),
-//                   ),
-//                 )
-//               : Container(),
-//           Align(
-//             alignment: Alignment.bottomCenter,
-//             child: Container(
-//               height: 25.h,
-//               width: MediaQuery.sizeOf(context).width,
-//               color: Theme.of(context).colorScheme.surface,
-//               child: ClipRRect(
-//                 child: SvgPicture.asset(
-//                   'assets/svg/azkary.svg',
-//                   colorFilter: ColorFilter.mode(
-//                       Theme.of(context).canvasColor.withOpacity(.05),
-//                       BlendMode.srcIn),
-//                   fit: BoxFit.fitWidth,
-//                 ),
-//               ),
-//             ),
-//           ),
-//           orientation(
-//               context,
-//               Align(
-//                 alignment: Alignment.center,
-//                 child: Row(
-//                   mainAxisSize: MainAxisSize.min,
-//                   children: [
-//                     Container(
-//                       width: 200.w,
-//                       margin: const EdgeInsets.only(right: 16.0).r,
-//                       child: Text(
-//                         details,
-//                         style: TextStyle(
-//                           fontSize: 19.sp,
-//                           fontFamily: 'naskh',
-//                           fontWeight: FontWeight.bold,
-//                           color: Theme.of(context).colorScheme.surface,
-//                         ),
-//                         textAlign: TextAlign.right,
-//                       ),
-//                     ),
-//                     Container(
-//                       height: 120.h,
-//                       width: 75.h,
-//                       margin: const EdgeInsets.all(16.0),
-//                       child: Stack(
-//                         alignment: Alignment.center,
-//                         children: [
-//                           // book_cover(),
-//                           Transform.translate(
-//                             offset: const Offset(0, 10),
-//                             child: Padding(
-//                               padding: const EdgeInsets.all(8.0),
-//                               child: Text(
-//                                 title,
-//                                 style: TextStyle(
-//                                   fontSize: 14.sp,
-//                                   fontFamily: 'kufi',
-//                                   fontWeight: FontWeight.bold,
-//                                   color: Theme.of(context).canvasColor,
-//                                 ),
-//                                 textAlign: TextAlign.center,
-//                               ),
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               Align(
-//                 alignment: Alignment.center,
-//                 child: Column(
-//                   mainAxisSize: MainAxisSize.min,
-//                   children: [
-//                     Container(
-//                       height: 140.h,
-//                       width: 90.h,
-//                       margin: const EdgeInsets.all(16.0).r,
-//                       child: Stack(
-//                         alignment: Alignment.center,
-//                         children: [
-//                           book_cover(),
-//                           Transform.translate(
-//                             offset: const Offset(0, 10),
-//                             child: Padding(
-//                               padding: const EdgeInsets.all(8.0).r,
-//                               child: Text(
-//                                 title,
-//                                 style: TextStyle(
-//                                   fontSize: 16.sp,
-//                                   fontFamily: 'kufi',
-//                                   fontWeight: FontWeight.bold,
-//                                   color: Theme.of(context).canvasColor,
-//                                 ),
-//                                 textAlign: TextAlign.center,
-//                               ),
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       width: 230.w,
-//                       child: Text(
-//                         details,
-//                         style: TextStyle(
-//                           fontSize: 18.sp,
-//                           fontFamily: 'naskh',
-//                           fontWeight: FontWeight.bold,
-//                           color: Theme.of(context).colorScheme.surface,
-//                         ),
-//                         textAlign: TextAlign.right,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ))
-//         ],
-//       ),
-//     ),
-//   );
-// }
-
-// Widget borderRadiusContainerLand(
-//     BuildContext context, bool show, String title, String details,
-//     {double? height, double? width, Color? color}) {
-//   return ClipRRect(
-//     child: Container(
-//       height: height!,
-//       width: width!.w,
-//       alignment: Alignment.bottomCenter,
-//       decoration: BoxDecoration(
-//         color: color ?? Theme.of(context).colorScheme.secondary,
-//         borderRadius: const BorderRadius.only(
-//           topLeft: Radius.circular(8),
-//           topRight: Radius.circular(8),
-//         ).r,
-//       ),
-//       child: Stack(
-//         children: [
-//           show == true
-//               ? Transform.translate(
-//                   offset: const Offset(0, -10),
-//                   child: Opacity(
-//                     opacity: .05,
-//                     child: SvgPicture.asset(
-//                       'assets/svg/azkary.svg',
-//                       width: MediaQuery.sizeOf(context).width,
-//                     ),
-//                   ),
-//                 )
-//               : Container(),
-//           Align(
-//             alignment: Alignment.center,
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 Container(
-//                   height: 140.h,
-//                   width: 90.h,
-//                   margin: const EdgeInsets.all(16.0).r,
-//                   child: Stack(
-//                     alignment: Alignment.center,
-//                     children: [
-//                       book_cover(),
-//                       Transform.translate(
-//                         offset: const Offset(0, 10),
-//                         child: Padding(
-//                           padding: const EdgeInsets.all(8.0).r,
-//                           child: Text(
-//                             title,
-//                             style: TextStyle(
-//                               fontSize: 16.sp,
-//                               fontFamily: 'kufi',
-//                               fontWeight: FontWeight.bold,
-//                               color: Theme.of(context).canvasColor,
-//                             ),
-//                             textAlign: TextAlign.center,
-//                           ),
-//                         ),
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//                 SizedBox(
-//                   width: 230.w,
-//                   child: Text(
-//                     details,
-//                     style: TextStyle(
-//                       fontSize: 18.sp,
-//                       fontFamily: 'naskh',
-//                       fontWeight: FontWeight.bold,
-//                       color: Theme.of(context).colorScheme.surface,
-//                     ),
-//                     textAlign: TextAlign.right,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           )
-//         ],
-//       ),
-//     ),
-//   );
-// }
-// book_cover() {
-//   return ClipRRect(
-//     borderRadius: const BorderRadius.all(Radius.circular(4)),
-//     child: SvgPicture.asset(
-//       'assets/svg/azkary_book.svg',
-//       fit: BoxFit.cover,
-//     ),
-//   );
-// }

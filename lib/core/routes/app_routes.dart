@@ -1,44 +1,53 @@
 
-
 import 'package:flutter/material.dart';
+import 'package:quranapp/featuers/home/presentation/home_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/hadith_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/hisn_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/prayer_time_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/qibla_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/sahih_%20al_bukhari_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/taqwem_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/tasbeh_view.dart';
+import 'package:quranapp/featuers/home/presentation/view/zakat_view.dart';
+import 'package:quranapp/featuers/splash/view/splash_view.dart';
+
 
 class AppRoute {
+  static const splashView = 'SplashView';
+  static const homeView = 'HomeView';
+  static const zakatCalculatorView = 'ZakatCalculatorView';
+  static const tasbeehScreen = 'TasbeehScreen';
+  static const taqwemView = 'TaqwemView';
+  static const sahihalBukhariView = 'SahihalBukhariView';
+  static const hadithView = 'HadithView';
   static const qiblahScreen = 'QiblahScreen';
-  static const profileScreen = 'ProfileScreen';
-  static const splashScreen = 'SplashScreen';
-  static const signUpScreen = 'SignUpScreen';
-  static const homescreen = 'HomeScreen';
-  static const onBoardingScreen = 'OnBoardingScreen';
-  static const favoriteScreen = 'FavoriteScreen';
-  static const categoryScreen = 'CategoryScreen';
-  static const cartScreen = 'CartScreen';
-  static const forgetPassWordScreen = 'ForgotPasswordScreen';
-  static const layoutScreen = 'HomeNavBarWidget3';
-  static const otpScreen = 'OtpScreen';
-  static const updateDataScreen = 'UpdateDataScreen';
-  static const changePasswordScreen = 'ChangePasswordScreen';
-  static const darkAndLightView = 'DarkAndLightView';
-
-  static const loginSuccess = 'LoginSuccessScreen';
-  static const detailsScreen = 'DetailsScreen';
+  static const prayerTimeView = 'PrayerTimeView';
+  static const hisnView = 'HisnView';
+  
 
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case splashScreen:
-        return SizeTransition3( QiblahScreen());
-      // case onBoardingScreen:
-      //   return SizeTransition3(const OnBoardingScreen());
-      // case signUpScreen:
-      //   return SizeTransition3(BlocProvider(
-      //     create: (context) => AuthSignUpCubit(),
-      //     child: const SignUpScreen(),
-      //   ));
-      // case signInScreen:
-      //   return SizeTransition3(BlocProvider(
-      //     create: (context) => AuthSignUpCubit(),
-      //     child: const SignInScreen(),
-      //   ));
+      case splashView:
+        return SizeTransition3( const SplashView());
+         case homeView:
+        return SizeTransition5(  HomeView());
+         case zakatCalculatorView:
+        return SizeTransition5(  ZakatCalculatorView());
+         case tasbeehScreen:
+        return SizeTransition5( const TasbeehScreen());
+         case taqwemView:
+        return SizeTransition5(  TaqwemView());
+         case sahihalBukhariView:
+        return SizeTransition5( const SahihalBukhariView());
+         case hadithView:
+        return SizeTransition5( const HadithView());
+         case qiblahScreen:
+        return SizeTransition5( const QiblahScreen());
+         case prayerTimeView:
+        return SizeTransition5(  const PrayerTimeView());
+         case hisnView:
+        return SizeTransition5( const HisnView());
+      
 
     
 

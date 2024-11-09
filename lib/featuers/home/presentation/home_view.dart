@@ -155,23 +155,23 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 SizedBox(height: 8.h),
-                Align(
-                        alignment: Alignment.topLeft,
-                        child: Container(
-                          padding: EdgeInsets.all(8.w),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                          child:Text(
-                      _gregorianDate,
-                      style: AppTextStyles.kufi16Style,
-                      textAlign: TextAlign.center,
-                    ),
-                        ),
-                      ),
+                // Align(
+                //         alignment: Alignment.topLeft,
+                //         child: Container(
+                //           padding: EdgeInsets.all(8.w),
+                //           decoration: BoxDecoration(
+                //             color: Colors.white.withOpacity(0.2),
+                //             borderRadius: BorderRadius.circular(20.r),
+                //           ),
+                //           child:Text(
+                //       _gregorianDate,
+                //       style: AppTextStyles.kufi16Style,
+                //       textAlign: TextAlign.center,
+                //     ),
+                //         ),
+                //       ),
                 
-                SizedBox(height: 8.h),
+                SizedBox(height: 20.h),
 
                 // SizedBox(height:MediaQuery.of),
                 Expanded(
@@ -210,7 +210,10 @@ class _HomeViewState extends State<HomeView> {
                             label: 'أوقات الصلاة',
                           ),
                           MenuItem(
-                            onTap: () {},
+                            onTap: () {
+                              //  NavigationHelper.navigateTo(
+                              //     context, const QuranKaremView());
+                            },
                             icon: FlutterIslamicIcons.quran2,
                             label: 'القرآن الكريم',
                           ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
-import 'package:quranapp/core/widgets/brain.dart';
+import 'package:quranapp/core/service/prayer_time_service.dart';
 import 'package:semicircle_indicator/semicircle_indicator.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -115,7 +115,7 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
   }
 
   void setListOfTimes() {
-    var value = context.read<Brain>().getJson()['data']['timings'];
+    var value = context.read<PrayerTimeService>().getJson()['data']['timings'];
     setState(() {
       for (var key in value.entries) {
         ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"].contains(key.key)
@@ -127,7 +127,7 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Brain>(builder: (context, value, child) {
+    return Consumer<PrayerTimeService>(builder: (context, value, child) {
       return SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -207,7 +207,7 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
                       width: 60,
                       child: Center(
                         child: Text(
-                          context.watch<Brain>().arabic
+                          context.watch<PrayerTimeService>().arabic
                               ? changeToArabic(next)
                               : previos,
                           style: TextStyle(
@@ -225,7 +225,7 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
                       width: 60,
                       child: Center(
                         child: Text(
-                          context.watch<Brain>().arabic
+                          context.watch<PrayerTimeService>().arabic
                               ? changeToArabic(previos)
                               : next,
                           style: TextStyle(
@@ -243,7 +243,7 @@ class _ClockState extends State<Clock> with SingleTickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      context.watch<Brain>().arabic
+                      context.watch<PrayerTimeService>().arabic
                           ? ": الباقي للصلاة القادمة ${changeToArabic(next)}"
                           : "Time till $next",
                       style: AppTextStyles.text900style20.copyWith(

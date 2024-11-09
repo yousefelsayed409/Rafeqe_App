@@ -4,56 +4,14 @@ import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
 
-class Brain extends ChangeNotifier {
-  int colorIndex = 0;
-  bool _clicked = false;
-  var networkStatus;
-  int _index = 1;
+class PrayerTimeService extends ChangeNotifier {
+  final bool _clicked = false;
   dynamic _jsonData;
   String _location = 'يرجى تشغيل الموقع';
   bool arabic = true;
   bool done = false;
-
-  int get index => _index;
   bool get clicked => _clicked;
   String get location => _location;
-
-  // تغيير حالة الزر عند النقر
-  void click() {
-    _clicked = !_clicked;
-    notifyListeners();
-  }
-
-  // تبديل الثيمات بالألوان
-  void switchTheme() {
-    colorIndex++;
-    if (colorIndex > 6) {
-      colorIndex = 0;
-    }
-    notifyListeners();
-  }
-
-  // تبديل اللغة
-  void switchLanguage() {
-    arabic = !arabic;
-    notifyListeners();
-  }
-
-  // ضبط حالة الشبكة
-  void setNetworkStatus(var status) {
-    networkStatus = status;
-  }
-
-  // جلب حالة الشبكة الحالية
-  dynamic getNetworkStatus() {
-    return networkStatus;
-  }
-
-  // ضبط الفهرس
-  void setIndex(index) {
-    _index = index;
-    notifyListeners();
-  }
 
   // تحديد الموقع الحالي
   Future<void> determinePosition() async {
