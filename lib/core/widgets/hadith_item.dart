@@ -261,8 +261,7 @@ class _HadithItemState extends State<HadithItem> {
 
 
                                                 
-                                              ).then((value) => customSnackBar(
-                                                  context, "تم نسخ الذكر"));
+                                              );
                                             },
                                             icon: Icon(
                                               Icons.copy,

@@ -171,61 +171,7 @@ Widget leftPage(BuildContext context, Widget child) {
 //       });
 // }
 
-customSnackBar(BuildContext context, String text) async {
-  // final colorSchemeSurface = Theme.of(context).colorScheme.surface;
 
-  var cancel = BotToast.showCustomNotification(
-    enableSlideOff: false,
-    toastBuilder: (cancelFunc) {
-      return Container(
-        height: 45.h,
-        decoration: BoxDecoration(
-            color: AppColors.bluecolor,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(8),
-            )),
-        margin: const EdgeInsets.symmetric(horizontal: 16.0).r,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          textDirection: TextDirection.rtl,
-          children: [
-            Expanded(
-              flex: 1,
-              child: SvgPicture.asset(
-                'assets/svg/snackBar_zakh.svg',
-                color: AppColors.bluecolor,
-              ),
-            ),
-            Expanded(
-              flex: 7,
-              child: Text(
-                text,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'kufi',
-                    fontStyle: FontStyle.italic,
-                    fontSize: 16.sp),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: RotatedBox(
-                quarterTurns: 2,
-                child: SvgPicture.asset(
-                  'assets/svg/snackBar_zakh.svg',
-                  color: AppColors.bluecolor,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    },
-    duration: const Duration(milliseconds: 3000),
-  );
-}
 Widget fontSizeDropDown(BuildContext context, var setState, Color color) {
   AzkarCubit cubit = AzkarCubit.get(context);
   return DropdownButton2(

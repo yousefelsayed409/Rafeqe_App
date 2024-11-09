@@ -247,8 +247,7 @@ class _AzkarItemState extends State<AzkarItem> {
                                           '${azkar.category}\n\n'
                                           '${azkar.zekr}\n\n'
                                           '| ${azkar.description}. | (التكرار: ${azkar.count})',
-                                        ).then((value) => customSnackBar(
-                                            context, "تم نسخ الذكر"));
+                                        );
                                       },
                                       icon: Icon(
                                         Icons.copy,
