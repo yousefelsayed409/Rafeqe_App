@@ -28,12 +28,10 @@ dependencies:
   location: ^7.0.1
   flutter_bloc: ^8.1.6
   geolocator: ^13.0.1
-  # google_fonts: ^6.2.1
   flutter_svg: ^2.0.10+1
   adhan_dart: ^1.1.2
   flutter_localizations:
     sdk: flutter
-  device_preview: ^1.2.0
   flutter_launcher_icons: ^0.14.1
   animated_toggle_switch: ^0.8.3
   another_xlider: ^3.0.2
