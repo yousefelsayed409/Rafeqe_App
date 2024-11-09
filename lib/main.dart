@@ -14,11 +14,11 @@ void main() async {
 
   await initializeDateFormatting('ar', null);
 
-  runApp(const Quranapp());
+  runApp(const RafeqeApp());
 }
 
-class Quranapp extends StatelessWidget {
-  const Quranapp({super.key});
+class RafeqeApp extends StatelessWidget {
+  const RafeqeApp({super.key});
 
   @override
   Widget build(BuildContext context) {

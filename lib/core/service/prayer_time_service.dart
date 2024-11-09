@@ -81,7 +81,6 @@ class PrayerTimeService extends ChangeNotifier {
   Future<void> fetchPrayerTimes() async {
     try {
       await determinePosition();
-      // سيتم تحديث البيانات داخل دالة getData من خلال تحديد الموقع
     } catch (e) {
       print("خطأ في جلب أوقات الصلاة: $e");
     }

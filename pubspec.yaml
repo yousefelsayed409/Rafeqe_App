@@ -65,8 +65,8 @@ flutter:
   assets:
     - assets/
     - assets/image/
-    - assets/lottie/
     - assets/books/
+    - assets/lottie/
 
 
 
