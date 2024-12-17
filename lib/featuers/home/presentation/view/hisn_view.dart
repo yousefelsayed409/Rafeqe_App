@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:quranapp/core/function/app_function.dart';
 import 'package:quranapp/core/models/all_azkar.dart';
 import 'package:quranapp/core/models/all_rwqya.dart';

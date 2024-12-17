@@ -10,6 +10,7 @@ import 'package:quranapp/core/widgets/widgets.dart';
 import 'package:share_plus/share_plus.dart';
 
 class RwqyaItem extends StatefulWidget {
+  // ignore: use_super_parameters
   const RwqyaItem({Key? key, required this.rwqya}) : super(key: key);
   final String rwqya;
 

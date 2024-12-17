@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
-import 'package:quranapp/core/service/prayer_time_service.dart';
 
 class prayCard extends StatefulWidget {
   final String label;

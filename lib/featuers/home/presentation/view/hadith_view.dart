@@ -13,7 +13,6 @@ import 'package:quranapp/core/widgets/custom_navigation.dart';
 import 'package:quranapp/core/widgets/hadith_item.dart';
 import 'package:quranapp/core/widgets/lottie.dart';
 import 'package:quranapp/core/widgets/menu_item_to_hisn.dart';
-import 'package:quranapp/core/widgets/widgets.dart';
 import 'package:quranapp/featuers/home/data/model/calss_model.dart';
 import 'package:quranapp/featuers/home/presentation/manger/Books_cubit/books_cubit.dart';
 import 'package:quranapp/featuers/home/presentation/view/widget/books_view.dart';

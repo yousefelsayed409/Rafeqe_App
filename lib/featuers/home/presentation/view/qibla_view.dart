@@ -78,11 +78,16 @@ class _QiblahScreenState extends State<QiblahScreen> with SingleTickerProviderSt
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Text(
+                'اتجاه القبلة',
+                style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 10),
               Text(
                 "${qiblahDirection?.direction.toInt() ?? 0}°",
                 style: const TextStyle(color: Colors.white, fontSize: 24),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 300,
                 child: AnimatedBuilder(
@@ -92,6 +97,12 @@ class _QiblahScreenState extends State<QiblahScreen> with SingleTickerProviderSt
                     child: Image.asset('assets/image/qibla.png'),
                   ),
                 ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'اتبع السهم للوصول إلى اتجاه القبلة الصحيح.',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

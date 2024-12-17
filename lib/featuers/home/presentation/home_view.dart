@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:async';
 import 'dart:math';
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:quranapp/core/function/app_function.dart';
+import 'package:quranapp/core/helper/cash_helper.dart';
+import 'package:quranapp/core/service/notification_service.dart';
 import 'package:quranapp/core/utils/app_assets.dart';
 import 'package:quranapp/core/utils/app_color.dart';
 import 'package:quranapp/core/utils/app_styles.dart';
@@ -25,14 +28,22 @@ import 'package:quranapp/featuers/home/presentation/view/tasbeh_view.dart';
 import 'package:quranapp/featuers/home/presentation/view/zakat_view.dart';
 
 class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
   var element;
+    // ignore: unused_field
+    Timer? _timer;
+
   Random rnd = Random();
+  // ignore: unused_field
   late String _gregorianDate;
+  // ignore: prefer_final_fields
+  NotificationService _notificationService = NotificationService();
 
   final List<String> arabicMonths = [
     'محرم',
@@ -50,14 +61,36 @@ class _HomeViewState extends State<HomeView> {
   ];
 
   @override
-  void initState() {
-    final now = DateTime.now();
-
+  void initState() { 
+_notificationService.requestPermission();
+    _notificationService.getToken();
+    _notificationService.initializeLocalNotifications(context);
+    _notificationService.setupFirebaseMessaging(context);
+    _notificationService.setupIntrectMessage(context);
+    _notificationService.getAccessToken();
+    // _notificationService.subscribeToTopic('sendallnotifi');
+    _startAutoNotification();
+      final now = DateTime.now();
     element = zikr[rnd.nextInt(zikr.length)];
     super.initState();
     _gregorianDate = DateFormat.yMMMMEEEEd('ar').format(now);
   }
+  
+  void _startAutoNotification() {
+    _timer = Timer.periodic(const Duration(hours: 1), (timer) async {
+      String randomBody = zikr[rnd.nextInt(zikr.length)]; 
+      String title = '.'; 
+      await _sendNotification(title, randomBody);
+    });
+  } 
 
+  Future<void> _sendNotification(String title, String body) async {
+    await _notificationService.sendNotifications(
+      fcmToken: CashNetwork.getCashData(key: 'Token'),
+      // title: title,
+      body: body,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     var _today = HijriCalendar.now();

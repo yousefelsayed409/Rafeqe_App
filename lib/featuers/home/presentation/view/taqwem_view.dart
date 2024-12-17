@@ -54,7 +54,7 @@ class _TaqwemViewState extends State<TaqwemView> {
           children: [
             const SizedBox(height: 30),
             Text(
-              'اليوم: $_currentDay', // عرض اليوم
+              'اليوم: $_currentDay', 
               style: AppTextStyles.vexatextstyle.copyWith(
                 color: AppColors.black,
                 fontSize: 20
@@ -64,7 +64,7 @@ class _TaqwemViewState extends State<TaqwemView> {
             const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
-                color: Colors.blue[100], // لون خلفية
+                color: Colors.blue[100], 
                 borderRadius: BorderRadius.circular(32),
               ),
               padding: const EdgeInsets.all(16.0),
@@ -101,7 +101,7 @@ class _TaqwemViewState extends State<TaqwemView> {
             const SizedBox(height: 30),
             Container(
               decoration: BoxDecoration(
-                color: Colors.green[100], // لون خلفية
+                color: Colors.green[100], 
                 borderRadius: BorderRadius.circular(32),
               ),
               padding: const EdgeInsets.all(16.0),
